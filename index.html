@@ -17,36 +17,39 @@
           <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
      </head>  
 
-     <body>  
+     <body onload="showStandard()">  
           <!-- Sidebar -->
           <div id="mySidenav" class="sidenav">
                <span href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</span>
-               <a href="#"><img width="35" class="m-2 " src="https://img.icons8.com/ios-glyphs/30/000000/calculator.png"/>Standard</a>
+               <a href="#standard" onclick="showStandard() "><img width="35" class="m-2 " src="https://img.icons8.com/ios-glyphs/30/000000/calculator.png"/>Standard</a>
+               <a href="#programmer" onclick="showProgrammer()"><img width="30" class="m-2" src="https://img.icons8.com/ios-glyphs/64/000000/code.png"/>Programmer</a>
+               <a href="#scientific" onclick="showScientific()"><img width="35" class="m-2" src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-flask-advertising-kiranshastry-lineal-kiranshastry.png"/>Scientific</a>
+               <a href="#currency-con" onclick="showCurrencyCon()"><img width="35" class="m-2" src="https://img.icons8.com/external-prettycons-lineal-prettycons/49/000000/external-currency-business-and-finance-prettycons-lineal-prettycons.png"/>Currency</a>
+               <a href="#Date-Difference" onclick="showDateDiff()"><img width="25" class="m-2" src="https://img.icons8.com/ios/49/000000/calendar.png"/>Date Calculation</a>
                <br>
                <span href="">
                     <label class="switch">
                          <input type="checkbox" onclick="changetheme()">
                          <span class="slider round">
                               <img width="20" class="lightimg" id="lighttheme" src="https://img.icons8.com/material-outlined/24/000000/sun.png"/>
-                              <img width="20" class="darkimg" id="darktheme" src="https://img.icons8.com/ios-glyphs/30/000000/sun--v3.png"/>
+                              <img width="20" class="darkimg" id="darktheme" src="https://img.icons8.com/ios-glyphs/30/000000/sun--v1.png"/>
                          </span>
                     </label>
                </span>
           </div>
+          <!-- Nav Bar -->
+          <nav class="navbar text-center mt-3">
+               <span style="font-size:30px; cursor:pointer" onclick="openNav()">&#9776; </span>
+               <h2 class="name mb-0" >
+                    <b id="calc-type">Standard</b>
+               </h2>
+               <button class="btn p-1 mobile-history" id="show-history-btn" onclick="showhistory()">
+                    <img width="30" src="https://img.icons8.com/external-flatart-icons-outline-flatarticons/64/000000/external-history-instagram-flatart-icons-outline-flatarticons.png"/>
+               </button> 
+          </nav>
 
           <!-- Main Calc & History -->
-          <div id="main">
-               <!-- <h1 class="name"><b>Standard</b></h1>  -->
-               <!-- Nav Bar -->
-               <nav class="navbar ">
-                    <span style="font-size:30px; cursor:pointer" onclick="openNav()">&#9776; </span>
-                    <h2 class="name mb-0">
-                         <b>Standard</b>
-                    </h2>
-                    <button class="btn p-1 mobile-history" id="show-history-btn" onclick="showhistory()">
-                         <img width="30" src="https://img.icons8.com/external-flatart-icons-outline-flatarticons/64/000000/external-history-instagram-flatart-icons-outline-flatarticons.png"/>
-                    </button> 
-               </nav>
+          <div id="standard">
                <!-- Calculator & History-->
                <div class="row">
                     <!-- Calculator -->
@@ -55,34 +58,293 @@
                               <div  id="previous-operand"> </div>  
                               <div  id="current-operand"> </div>  
                          </div>  
-                         <button class="span" onclick = "clearall() " >C</button>  
-                         <button onclick = "backspace()"><img width="40" class="" src="https://img.icons8.com/ios/64/000000/clear-symbol.png"/></button>  
-                         <button onclick = "insert('/')">÷</button>  
-                         <button onclick = "insert(1)" value="1">1</button>  
-                         <button onclick = "insert(2)" value="2">2</button>  
-                         <button onclick = "insert(3)" value="3">3</button>  
-                         <button onclick = "insert('*')">*</button>  
-                         <button onclick = "insert(4)" value="4">4</button>  
-                         <button onclick = "insert(5)" value="5">5</button>  
-                         <button onclick = "insert(6)" value="6">6</button>  
-                         <button onclick = "insert('+')">+</button>  
-                         <button onclick = "insert(7)" value="7">7</button>  
-                         <button onclick = "insert(8)" value="8">8</button>  
-                         <button onclick = "insert(9)" value="9">9</button>  
-                         <button onclick = "insert('-')">-</button>  
-                         <button onclick = "insert('.')" class="bottom-left">.</button>  
-                         <button onclick = "insert(0)">0</button>  
-                         <button class="span-two" onclick="equal()">=</button>  
+                         <button class="span" onclick = "clearall('current-operand', 'previous-operand') " >C</button>  
+                         <button onclick = "backspace('current-operand', 'previous-operand')"><img width="40" class="" src="https://img.icons8.com/ios/64/000000/clear-symbol.png"/></button>  
+                         <button onclick = "insert('/','current-operand')">÷</button>  
+                         <button onclick = "insert(1,'current-operand')" value="1">1</button>  
+                         <button onclick = "insert(2,'current-operand')" value="2">2</button>  
+                         <button onclick = "insert(3,'current-operand')" value="3">3</button>  
+                         <button onclick = "insert('*','current-operand')">*</button>  
+                         <button onclick = "insert(4,'current-operand')" value="4">4</button>  
+                         <button onclick = "insert(5,'current-operand')" value="5">5</button>  
+                         <button onclick = "insert(6,'current-operand')" value="6">6</button>  
+                         <button onclick = "insert('+','current-operand')">+</button>  
+                         <button onclick = "insert(7,'current-operand')" value="7">7</button>  
+                         <button onclick = "insert(8,'current-operand')" value="8">8</button>  
+                         <button onclick = "insert(9,'current-operand')" value="9">9</button>  
+                         <button onclick = "insert('-','current-operand')">-</button>  
+                         <button onclick = "insert('.','current-operand')" class="bottom-left">.</button>  
+                         <button onclick = "insert(0,'current-operand')">0</button>  
+                         <button class="span-two" onclick="equal('current-operand', 'previous-operand', 'query', 'history')">=</button>  
                     </div>  
                     <!-- History -->
                     <div class=" p-3 " id="operation-history" data-aos="fade-up">
                          <h2>History</h2>
-                         <button onclick = "clearhistory()" type="button" class="btn p-1 clear-history">
+                         <button onclick = "clearhistory('query', 'history')" type="button" class="btn p-1 clear-history">
                               <img width="30" src="https://img.icons8.com/external-kiranshastry-lineal-color-kiranshastry/64/000000/external-delete-miscellaneous-kiranshastry-lineal-color-kiranshastry.png"/>
                          </button>  
                          <div id="query" class="display-history"> </div>
                          <div id="history" class="display-history"> </div>
-                         
+                    </div>
+               </div>          
+               <br>
+          </div>
+
+          <!-- Programmer & History -->
+          <div id="Programmer">
+               <!-- Calculator & History-->
+               <div class="row">
+                    <!-- Calculator -->
+                    <div class="pro-calculator-grid" id="calculator"data-aos="fade-up" >  
+                         <div class="output"  id="pro-chnge-output">  
+                              <div  id="pro-previous-operand"> </div>  
+                              <div  id="pro-current-operand"> </div>  
+                              <div id="prog-ops" class="container">
+                                   <div class="row ml-2">
+                                        <div class="col-md-3">
+                                             <select name="number-con" class="form-control  mr-3 number-convert" id="number-convert">
+                                                  <option value="none" disabled selected>Number Conversion</option>
+                                                  <option value="decimal">Decimal</option>
+                                                  <option value="octal">Octal</option>
+                                                  <option value="hexdec">HexaDecimal</option>
+                                                  <option value="binary">Binary</option>
+                                             </select>
+                                        </div>
+                                        <div class="col-md-5">
+                                             <select name="number-con" class="form-control col-md-6 number-convert" id="number-convert">
+                                                  <option value="none" disabled selected>Bitwise</option>
+                                                  <option value="decimal">AND</option>
+                                                  <option value="decimal">NAND</option>
+                                                  <option value="octal">OR</option>
+                                                  <option value="binary">EXOR</option>
+                                                  <option value="hexdec">NOR</option>
+                                                  <option value="binary">EXNOR</option>
+                                                  <option value="binary">NOT</option>
+
+                                             </select>
+                                        </div>
+                                   </div>
+                                   </div>
+                         </div>  
+                         <button class="span" onclick = "clearall('pro-current-operand', 'pro-previous-operand') " >C</button>  
+                         <button onclick = "backspace('pro-current-operand', 'pro-previous-operand')"><img width="40" class="" src="https://img.icons8.com/ios/64/000000/clear-symbol.png"/></button>  
+                         <button onclick = "insert('%','pro-current-operand')">%</button>  
+                         <button onclick = "insert('A','pro-current-operand')">A</button>  
+                         <button onclick = "insert('(','pro-current-operand')">(</button>  
+                         <button onclick = "insert(')','pro-current-operand')">)</button>  
+                         <button onclick = "insert('-','pro-current-operand')">+/-</button>  
+                         <button onclick = "insert('/','pro-current-operand')">÷</button>  
+                         <button onclick = "insert('B','pro-current-operand')">B</button>  
+                         <button onclick = "insert(1,'pro-current-operand')" value="1">X</button>  
+                         <button onclick = "insert(2,'pro-current-operand')" value="2">2</button>  
+                         <button onclick = "insert(3,'pro-current-operand')" value="3">3</button>  
+                         <button onclick = "insert('*','pro-current-operand')">*</button>  
+                         <button onclick = "insert('C','pro-current-operand')">C</button>  
+                         <button onclick = "insert(4,'pro-current-operand')" value="4">4</button>  
+                         <button onclick = "insert(5,'pro-current-operand')" value="5">5</button>  
+                         <button onclick = "insert(6,'pro-current-operand')" value="6">6</button>  
+                         <button onclick = "insert('+','pro-current-operand')">+</button>  
+                         <button onclick = "insert('D','pro-current-operand')">D</button>  
+                         <button onclick = "insert(7,'pro-current-operand')" value="7">7</button>  
+                         <button onclick = "insert(8,'pro-current-operand')" value="8">8</button>  
+                         <button onclick = "insert(9,'pro-current-operand')" value="9">9</button>  
+                         <button onclick = "insert('-','pro-current-operand')">-</button>  
+                         <button onclick = "insert('E','pro-current-operand')">E</button>  
+                         <button onclick = "insert('.','pro-current-operand')" class="bottom-left">.</button>  
+                         <button onclick = "insert(0,'pro-current-operand')">0</button>  
+                         <button class="span" onclick="equal('pro-current-operand', 'pro-previous-operand', 'pro-query', 'pro-history')">=</button>  
+
+                         <button style="border-bottom-right-radius: 10px;" onclick = "insert('F','pro-current-operand')">F</button>  
+
+                    </div>  
+                    <!-- History -->
+                    <div class=" p-3 " id="pro-operation-history" data-aos="fade-up">
+                         <h2>History</h2>
+                         <button onclick = "clearhistory('pro-query', 'pro-history')" type="button" class="btn p-1 clear-history">
+                              <img width="30" src="https://img.icons8.com/external-kiranshastry-lineal-color-kiranshastry/64/000000/external-delete-miscellaneous-kiranshastry-lineal-color-kiranshastry.png"/>
+                         </button>  
+                         <div id="pro-query" class="display-history"> </div>
+                         <div id="pro-history" class="display-history"> </div>
+                    </div>
+               </div>          
+               <br>
+          </div>
+
+          <!-- Scientific Calculator & history -->
+          <div id="Scientific">
+               <!-- Calculator & History-->
+               <div class="row">
+                    <!-- Calculator -->
+                    <div class="sci-calculator-grid" id="calculator"data-aos="fade-up" >  
+                         <div class="output"  id="chnge-output">  
+                              <div  id="sci-previous-operand"> </div>  
+                              <div  id="sci-current-operand"> </div>  
+                         </div>  
+                         <button class="span" onclick = "clearall('sci-current-operand', 'sci-previous-operand') " >C</button>  
+                         <button onclick = "insert(3.14,'sci-current-operand')">Pi</button>  
+                         <button onclick = "insert(2.71,'sci-current-operand')">e</button>  
+                         <button onclick = "backspace('sci-current-operand', 'sci-previous-operand')"><img width="40" class="" src="https://img.icons8.com/ios/64/000000/clear-symbol.png"/></button>  
+                         <button onclick = "insert(X^2,'sci-current-operand')">x^2</button>  
+                         <button onclick = "insert(1/X,'sci-current-operand')">1/x</button>  
+                         <button onclick = "insert(abs,'sci-current-operand')">|X|</button>  
+                         <button onclick = "insert(Mod,'sci-current-operand')">mod</button>  
+                         <button onclick = "insert(XX,'sci-current-operand')">2 root x</button>  
+                         <button onclick = "insert('(','sci-current-operand')">(</button>  
+                         <button onclick = "insert(')','sci-current-operand')">)</button>  
+                         <button onclick = "insert('fact()','sci-current-operand')">n!</button>  
+                         <button onclick = "insert(X^y,'sci-current-operand')">x^y</button>  
+                         <button onclick = "insert('/','sci-current-operand')">÷</button>  
+                         <button onclick = "insert(1,'sci-current-operand')" value="1">1</button>  
+                         <button onclick = "insert(2,'sci-current-operand')" value="2">2</button>  
+                         <button onclick = "insert(3,'sci-current-operand')" value="3">3</button>  
+                         <button onclick = "insert(X,'sci-current-operand')">10^x</button>  
+                         <button onclick = "insert('*','sci-current-operand')">*</button>  
+                         <button onclick = "insert(4,'sci-current-operand')" value="4">4</button>  
+                         <button onclick = "insert(5,'sci-current-operand')" value="5">5</button>  
+                         <button onclick = "insert(6,'sci-current-operand')" value="6">6</button>  
+                         <button onclick = "insert(X,'sci-current-operand')">log</button>  
+                         <button onclick = "insert('+','sci-current-operand')">+</button>  
+                         <button onclick = "insert(7,'sci-current-operand')" value="7">7</button>  
+                         <button onclick = "insert(8,'sci-current-operand')" value="8">8</button>  
+                         <button onclick = "insert(9,'sci-current-operand')" value="9">9</button>  
+                         <button onclick = "insert(X,'sci-current-operand')">ln</button>  
+                         <button onclick = "insert('-','sci-current-operand')">-</button>  
+                         <button onclick = "insert('X','sci-current-operand')" class="bottom-left">+/-</button>  
+                         <button onclick = "insert(0,'sci-current-operand')">0</button>  
+                         <button onclick = "insert('.','sci-current-operand')">.</button>  
+                         <!-- <button onclick = "insert(0,'sci-current-operand')">0</button>  
+                         <button onclick = "insert(0,'sci-current-operand')">0</button>  
+                         <button onclick = "insert(0,'sci-current-operand')">0</button>  
+                         <button onclick = "insert(0,'sci-current-operand')">0</button>  
+                         <button onclick = "insert(0,'sci-current-operand')">0</button>  
+                         <button onclick = "insert(0,'sci-current-operand')">0</button>  
+                         <button onclick = "insert(0,'sci-current-operand')">0</button>  
+                         <button onclick = "insert(0,'sci-current-operand')">0</button>  
+                         <button onclick = "insert(0,'sci-current-operand')">0</button>  
+                         <button onclick = "insert(0,'sci-current-operand')">0</button>   -->
+                         <button class="span-two" onclick="equal('sci-current-operand', 'sci-previous-operand', 'sci-query', 'sci-history')">=</button>  
+                    </div>  
+                    <!-- History -->
+                    <div class=" p-3 " id="sci-operation-history" data-aos="fade-up">
+                         <h2>History</h2>
+                         <button onclick = "clearhistory('sci-query', 'sci-history')" type="button" class="btn p-1 clear-history">
+                              <img width="30" src="https://img.icons8.com/external-kiranshastry-lineal-color-kiranshastry/64/000000/external-delete-miscellaneous-kiranshastry-lineal-color-kiranshastry.png"/>
+                         </button>  
+                         <div id="sci-query" class="display-history"> </div>
+                         <div id="sci-history" class="display-history"> </div>
+                    </div>
+               </div>          
+               <br>
+          </div>
+
+          <!-- Currency Converter -->
+          <div id="currency-con">
+               <div class="col-md-8 dates currency m-auto">
+                    <label for="from_currency" class="m-3">From</label>
+                    <select id="from_currency" onchange="calculate()" class="form-control">
+                         <option value="AED">AED</option><option value="ARS">ARS</option>
+                         <option value="AUD">AUD</option><option value="BGN">BGN</option>
+                         <option value="BRL">BRL</option><option value="BSD">BSD</option>
+                         <option value="CAD">CAD</option><option value="CHF">CHF</option>
+                         <option value="CLP">CLP</option><option value="CNY">CNY</option>
+                         <option value="COP">COP</option><option value="CZK">CZK</option>
+                         <option value="DKK">DKK</option><option value="DOP">DOP</option>
+                         <option value="EGP">EGP</option><option value="EUR">EUR</option>
+                         <option value="FJD">FJD</option><option value="GBP">GBP</option>
+                         <option value="GTQ">GTQ</option><option value="HKD">HKD</option>
+                         <option value="HRK">HRK</option><option value="HUF">HUF</option>
+                         <option value="IDR">IDR</option><option value="ILS">ILS</option>
+                         <option value="INR">INR</option><option value="ISK">ISK</option>
+                         <option value="JPY">JPY</option><option value="KRW">KRW</option>
+                         <option value="KZT">KZT</option><option value="MXN">MXN</option>
+                         <option value="MYR">MYR</option><option value="NOK">NOK</option>
+                         <option value="NZD">NZD</option><option value="PAB">PAB</option>
+                         <option value="PEN">PEN</option><option value="PHP">PHP</option>
+                         <option value="PKR">PKR</option><option value="PLN">PLN</option>
+                         <option value="PYG">PYG</option><option value="RON">RON</option>
+                         <option value="RUB">RUB</option><option value="SAR">SAR</option>
+                         <option value="SEK">SEK</option><option value="SGD">SGD</option>
+                         <option value="THB">THB</option><option value="TRY">TRY</option>
+                         <option value="TWD">TWD</option><option value="UAH">UAH</option>
+                         <option value="USD" selected>USD</option><option value="UYU">UYU</option>
+                         <option value="VND">VND</option><option value="ZAR">ZAR</option>
+                    </select>
+                    <input type="number" id="from_ammount" oninput="calculate()" class="form-control ml-4" placeholder="0" value=1 />
+               </div><br>
+               <div class="col-md-7 middle m-auto">
+                    <button id="exchange">
+                         <img src="https://img.icons8.com/external-flatart-icons-flat-flatarticons/64/000000/external-currency-exchange-taxes-flatart-icons-flat-flatarticons.png"/>
+                    </button>
+                    <div class="rate m-auto" id="rate"></div>
+               </div>
+               <div class="col-md-8 dates currency m-auto">
+                    <label for="to_currency" class="m-3">To</label>
+                    <select id="to_currency" onchange="calculate()" class="form-control">
+                         <option value="AED">AED</option><option value="ARS">ARS</option>
+                         <option value="AUD">AUD</option><option value="BGN">BGN</option>
+                         <option value="BRL">BRL</option><option value="BSD">BSD</option>
+                         <option value="CAD">CAD</option><option value="CHF">CHF</option>
+                         <option value="CLP">CLP</option><option value="CNY">CNY</option>
+                         <option value="COP">COP</option><option value="CZK">CZK</option>
+                         <option value="DKK">DKK</option><option value="DOP">DOP</option>
+                         <option value="EGP">EGP</option><option value="EUR">EUR</option>
+                         <option value="FJD">FJD</option><option value="GBP">GBP</option>
+                         <option value="GTQ">GTQ</option><option value="HKD">HKD</option>
+                         <option value="HRK">HRK</option><option value="HUF">HUF</option>
+                         <option value="IDR">IDR</option><option value="ILS">ILS</option>
+                         <option value="INR" selected>INR</option><option value="ISK">ISK</option>
+                         <option value="JPY">JPY</option><option value="KRW">KRW</option>
+                         <option value="KZT">KZT</option><option value="MXN">MXN</option>
+                         <option value="MYR">MYR</option><option value="NOK">NOK</option>
+                         <option value="NZD">NZD</option><option value="PAB">PAB</option>
+                         <option value="PEN">PEN</option><option value="PHP">PHP</option>
+                         <option value="PKR">PKR</option><option value="PLN">PLN</option>
+                         <option value="PYG">PYG</option><option value="RON">RON</option>
+                         <option value="RUB">RUB</option><option value="SAR">SAR</option>
+                         <option value="SEK">SEK</option><option value="SGD">SGD</option>
+                         <option value="THB">THB</option><option value="TRY">TRY</option>
+                         <option value="TWD">TWD</option><option value="UAH">UAH</option>
+                         <option value="USD">USD</option><option value="UYU">UYU</option>
+                         <option value="VND">VND</option><option value="ZAR">ZAR</option>
+                    </select>
+                    <input type="number" id="to_ammount" oninput="calculate()" class="form-control ml-4" placeholder="0" />
+               </div>
+               <h4 class="mt-3 text-center" id="con-from-to"></h4>
+          </div>
+          
+          <!-- Date Calculation -->
+          <div id="Date-Difference">
+               <!-- Calculator & History-->
+               <div class="m-auto pb-0 date-type">
+                    <div class="">
+                    <select class="form-control date-type" onchange="dropdowndate(this.value)" id="date-dropd">
+                         <option selected value="difference">Difference Between Dates</option>
+                         <option value="calculations">Add/Subtract Dates</option>
+                    </select>
+                    </div>
+                    <div class="pt-1 dates" id="id-dates-diff">
+                         <label for="date-from" class="mt-5">From</label>
+                         <input type="date" id="date-from" class="form-control mb-3 ">
+                         <label for="date-to" class="mt-3">To</label>
+                         <input type="date" id="date-to" onchange="dateDiff()" class="form-control">
+                         <button class="btn btn-primary mt-4" id="mybutton" onclick="cleardates('date-from')">
+                              Clear
+                         </button>
+                         <h4 class="mt-3 alert alert-info text-center" id="diff-dates"></h4>
+                    </div>
+                    <div class="dates" id="id-date-cal">
+                         <label for="date-cal-from" class="mt-5">From</label>
+                         <input type="date" id="date-cal-from" class="form-control mb-3 ">
+                         <input type="number" class="form-control mb-2" id="opdate" placeholder="Enter Number of Days ex.5"><br>
+                         <label for="date-to" class="mt-1">Operation</label><br>
+                         <input type="radio" id="addop" name="opr" onclick="adddates()" value="add">
+                         <label for="addop">ADD</label>
+                         <input type="radio" id="subop" name="opr" onclick="subdates()" value="sub">
+                         <label for="subop">SUBTRACT</label><br>
+                         <button class="btn btn-primary mt-4" id="mybutton" onclick="cleardates('date-cal-from')">
+                              Clear
+                         </button>
+                         <h4 class="mt-3 alert alert-info text-center" id="cal-dates"></h4>
                     </div>
                </div>          
                <br>
