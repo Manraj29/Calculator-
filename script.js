@@ -62,6 +62,10 @@ let history = [''];
 let data = [''];
 var arr = [];
 
+// preop previous operand
+// hist  sci history (main ans)
+// query sci query (question)
+// value expression is also answer
 function addToHistory(value, preop, query, hist) {
 	var total = '';
 	arr = [];
@@ -79,6 +83,7 @@ function addToHistory(value, preop, query, hist) {
 		document.getElementById(hist).innerHTML += "" + arr[j] + "<hr>";
 	}
 }
+
 
 
 //Clearing History
@@ -122,6 +127,126 @@ function showhistory() {
 			document.getElementById('sci-operation-history').style.display = "block";
 		}	
 	}
+
+}
+
+var hexad = document.getElementsByName('hexad');
+var binar = document.getElementsByName('binar');
+var octa = document.getElementsByName('octa');		
+// var elems3 = document.getElementsByName('hexad');
+
+for(var i = 0; i < hexad.length; i++) {
+	hexad[i].disabled = true;
+}
+
+//Programmer Calc
+
+function noconvert(value) {
+	if (value == 'decimal') {
+		for(var i = 0; i < 10; i++) {
+			hexad[i].disabled = true;
+			octa[i].disabled = false;
+			binar[i].disabled = false;
+		}
+	}
+	else if (value == 'binary') {
+		for(var i = 0; i < 10; i++) {
+			hexad[i].disabled = true;
+			binar[i].disabled = true;
+			octa[i].disabled = true;
+		}
+	}
+	else if (value == 'octal') {
+		for(var i = 0; i < 10; i++) {
+			octa[i].disabled = true;
+			hexad[i].disabled = true;
+		}
+	}
+	else if (value == "hexadec") {
+		for(var i = 0; i < 20; i++) {
+			hexad[i].disabled = false;
+			octa[i].disabled = false;
+			binar[i].disabled = false;
+
+		}
+	}
+}
+
+
+
+
+//Scientific calc
+function scientificfun(op) {
+	var x = document.getElementById('sci-current-operand');
+	var y = document.getElementById('sci-previous-operand');
+	var ansop;
+	if (op == 'square') {
+		ansop = Math.pow(x.innerHTML, 2);
+		y.innerHTML = x.innerHTML + "^2";
+		x.innerHTML = ansop;
+		addToHistory(ansop, 'sci-previous-operand', 'sci-query', 'sci-history');
+	}
+	else if (op == 'cube') {
+		ansop = Math.pow(x.innerHTML, 3);
+		y.innerHTML = x.innerHTML + "^3";
+		x.innerHTML = ansop;
+		addToHistory(ansop, 'sci-previous-operand', 'sci-query', 'sci-history');
+
+	}
+	else if (op == 'sqrt') {
+		ansop = Math.sqrt(x.innerHTML);
+		y.innerHTML = "√" + x.innerHTML;
+		x.innerHTML = ansop;
+		addToHistory(ansop, 'sci-previous-operand', 'sci-query', 'sci-history');
+
+	}
+	else if (op == 'log') {
+		ansop = Math.log(x.innerHTML);
+		y.innerHTML = "log" + x.innerHTML;
+		x.innerHTML = ansop;
+		addToHistory(ansop, 'sci-previous-operand', 'sci-query', 'sci-history');
+
+	}
+	else if (op == '1byx') {
+		ansop = 1 / x.innerHTML;
+		y.innerHTML = "1/" + x.innerHTML;
+		x.innerHTML = ansop;
+		addToHistory(ansop, 'sci-previous-operand', 'sci-query', 'sci-history');
+
+	}
+	else if (op == 'abs') {
+		ansop = Math.abs(x.innerHTML);
+		y.innerHTML = "|" + x.innerHTML + "|";
+		x.innerHTML = ansop;
+		addToHistory(ansop, 'sci-previous-operand', 'sci-query', 'sci-history');
+
+	}
+	else if(op == 'factorial') {
+		ansop = 1;
+		for(var i = 1; i <= x.innerHTML; i++) {
+			ansop *= i;
+		}
+		y.innerHTML = x.innerHTML + "!";
+		x.innerHTML = ansop;
+		addToHistory(ansop, 'sci-previous-operand', 'sci-query', 'sci-history');
+
+	}
+	// else if(op == "xraisey") {
+	// 	ansop = Math.pow(x.innerHTML, y.innerHTML);
+	// 	y.innerHTML = x.innerHTML + "^" + y.innerHTML;
+	// 	x.innerHTML = ansop;
+	// }
+	else if(op == '10raisex'){
+		ansop = Math.pow(10, x.innerHTML);
+		y.innerHTML = "10^" + x.innerHTML;
+		x.innerHTML = ansop;
+		addToHistory(ansop, 'sci-previous-operand', 'sci-query', 'sci-history');
+
+	}
+	else {
+		alert("Error");
+	}
+	// y.innerHTML += "=" + x.innerHTML;
 
 }
 
