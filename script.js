@@ -150,7 +150,7 @@ function noconvert(forop) {
 
 	var x = (document.getElementById('pro-current-operand'));
 	var y = document.getElementById('pro-previous-operand');
-	alert(x.innerHTML)
+// 	alert(x.innerHTML)
 	var fromcon = document.getElementById("from-number-convert");
 	var tocon = document.getElementById("to-number-convert");
 	var from = fromcon.value;
