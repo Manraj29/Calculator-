@@ -102,55 +102,52 @@
                               <div id="prog-ops" class="container">
                                    <div class="row ml-2">
                                         <div class="col-md-3">
-                                             <select onchange="noconvert(this.value)" name="number-con" class="form-control  mr-3 number-convert" id="number-convert">
-                                                  <option value="none" disabled selected>Number Conversion</option>
+                                             <select onchange="noconvert('from-number-convert')" name="from-number-con" class="form-control  mr-3 number-convert" id="from-number-convert">
+                                                  <option value="none" disabled selected>Number Conversion From</option>
                                                   <option value="decimal">Decimal</option>
                                                   <option value="octal">Octal</option>
                                                   <option value="hexadec">HexaDecimal</option>
                                                   <option value="binary">Binary</option>
                                              </select>
                                         </div>
-                                        <div class="col-md-5">
-                                             <select name="number-con" class="form-control col-md-6 number-convert" id="number-convert">
-                                                  <option value="none" disabled selected>Bitwise</option>
-                                                  <option value="andop">AND</option>
-                                                  <option value="nandop">NAND</option>
-                                                  <option value="orop">OR</option>
-                                                  <option value="exorop">EXOR</option>
-                                                  <option value="norop">NOR</option>
-                                                  <option value="exnorop">EXNOR</option>
-                                                  <option value="notop">NOT</option>
+                                        <div class="col-md-3 ml-2">
+                                             <select onchange="noconvert('to-number-convert')" name="to-number-con" class="form-control  mr-3 number-convert" id="to-number-convert">
+                                                  <option value="none" disabled selected>Number Conversion To</option>
+                                                  <option value="todecimal">Decimal</option>
+                                                  <option value="tooctal">Octal</option>
+                                                  <option value="tohexadec">HexaDecimal</option>
+                                                  <option value="tobinary">Binary</option>
                                              </select>
                                         </div>
                                    </div>
-                                   </div>
+                              </div>
                          </div>  
                          <button class="span" onclick = "clearall('pro-current-operand', 'pro-previous-operand') " >C</button>  
                          <button onclick = "backspace('pro-current-operand', 'pro-previous-operand')"><img width="40" class="" src="https://img.icons8.com/ios/64/000000/clear-symbol.png"/></button>  
-                         <button onclick = "insert('%','pro-current-operand')">%</button>  
+                         <button onclick = "insert('%','pro-current-operand')" name="opr">%</button>  
                          <button onclick = "insert('A','pro-current-operand')" name="hexad">A</button>  
-                         <button onclick = "insert('(','pro-current-operand')" >(</button>  
-                         <button onclick = "insert(')','pro-current-operand')">)</button>  
-                         <button onclick = "insert('-','pro-current-operand')">+/-</button>  
-                         <button onclick = "insert('/','pro-current-operand')">÷</button>  
+                         <button onclick = "insert('(','pro-current-operand')" name="opr">(</button>  
+                         <button onclick = "insert(')','pro-current-operand')" name="opr">)</button>  
+                         <button onclick = "insert('-','pro-current-operand')" name="opr">+/-</button>  
+                         <button onclick = "insert('/','pro-current-operand')" name="opr">÷</button>  
                          <button onclick = "insert('B','pro-current-operand')" name="hexad">B</button>  
-                         <button onclick = "insert(1,'pro-current-operand')" value="1">X</button>  
-                         <button onclick = "insert(2,'pro-current-operand')" value="2">2</button>  
-                         <button onclick = "insert(3,'pro-current-operand')" value="3" name="binar">3</button>  
-                         <button onclick = "insert('*','pro-current-operand')">*</button>  
+                         <button onclick = "insert(1,'pro-current-operand')" value="1" name="binar">1</button>  
+                         <button onclick = "insert(2,'pro-current-operand')" value="2"  name="octa">2</button>  
+                         <button onclick = "insert(3,'pro-current-operand')" value="3" name="octa">3</button>  
+                         <button onclick = "insert('*','pro-current-operand')" name="opr">*</button>  
                          <button onclick = "insert('C','pro-current-operand')" name="hexad">C</button>  
-                         <button onclick = "insert(4,'pro-current-operand')" value="4" name="binar">4</button>  
-                         <button onclick = "insert(5,'pro-current-operand')" value="5" name="binar">5</button>  
-                         <button onclick = "insert(6,'pro-current-operand')" value="6" name="binar">6</button>  
-                         <button onclick = "insert('+','pro-current-operand')" >+</button>  
+                         <button onclick = "insert(4,'pro-current-operand')" value="4" name="octa">4</button>  
+                         <button onclick = "insert(5,'pro-current-operand')" value="5" name="octa">5</button>  
+                         <button onclick = "insert(6,'pro-current-operand')" value="6" name="octa">6</button>  
+                         <button onclick = "insert('+','pro-current-operand')" name="opr">+</button>  
                          <button onclick = "insert('D','pro-current-operand')" name="hexad">D</button>  
-                         <button onclick = "insert(7,'pro-current-operand')" value="7" name="binar">7</button>  
-                         <button onclick = "insert(8,'pro-current-operand')" value="8" name="octa">8</button>  
-                         <button onclick = "insert(9,'pro-current-operand')" value="9" name="octa">9</button>  
-                         <button onclick = "insert('-','pro-current-operand')">-</button>  
+                         <button onclick = "insert(7,'pro-current-operand')" value="7" name="octa">7</button>  
+                         <button onclick = "insert(8,'pro-current-operand')" value="8" name="deci">8</button>  
+                         <button onclick = "insert(9,'pro-current-operand')" value="9" name="deci">9</button>  
+                         <button onclick = "insert('-','pro-current-operand')" name="opr">-</button>  
                          <button onclick = "insert('E','pro-current-operand')" name="hexad">E</button>  
-                         <button onclick = "insert('.','pro-current-operand')" class="bottom-left">.</button>  
-                         <button onclick = "insert(0,'pro-current-operand')">0</button>  
+                         <button onclick = "insert('.','pro-current-operand')" class="bottom-left" name="opr">.</button>  
+                         <button onclick = "insert(0,'pro-current-operand')" name="binar">0</button>  
                          <button class="span" onclick="equal('pro-current-operand', 'pro-previous-operand', 'pro-query', 'pro-history')">=</button>  
                          <button style="border-bottom-right-radius: 10px;" onclick = "insert('F','pro-current-operand')" name="hexad">F</button>  
 
@@ -174,9 +171,35 @@
                <div class="row">
                     <!-- Calculator -->
                     <div class="sci-calculator-grid" id="calculator"data-aos="fade-up" >  
-                         <div class="output"  id="chnge-output">  
+                         <div class="output"  id="sci-chnge-output">  
                               <div  id="sci-previous-operand"> </div>  
                               <div  id="sci-current-operand"> </div>  
+                              <div id="prog-ops" class="container">
+                                   <div class="row ml-2">
+                                        <div class="col-md-3">
+                                             <select onchange="trigofunctions(this.value)" name="number-con" class="form-control  mr-3 number-convert" id="number-convert">
+                                                  <option value="none" disabled selected>Trigonometry</option>
+                                                  <option value="sin">sin</option>
+                                                  <option value="cos">cos</option>
+                                                  <option value="tan">tan</option>
+                                                  <option value="sec">sec</option>
+                                                  <option value="cosec">cosec</option>
+                                                  <option value="cot">cot</option>
+                                             </select>
+                                             
+                                        </div>
+                                        <div class="col-md-5">
+                                             <select  onchange="basicfunctions(this.value)"  name="number-con" class="form-control col-md-6 number-convert" id="number-convert">
+                                                  <option value="none" disabled selected>Functions</option>
+                                                  <option value="floor">floor</option>
+                                                  <option value="ceil">ceil</option>
+                                                  <option value="round">round</option>
+                                                  <option value="rand">rand</option>
+                                                  <option value="degree">degree</option>
+                                             </select>
+                                        </div>
+                                   </div>
+                              </div>
                          </div>  
                          <button class="span" onclick = "clearall('sci-current-operand', 'sci-previous-operand') " >C</button>  
                          <button onclick = "insert(3.14,'sci-current-operand')">Pi</button>  
@@ -190,7 +213,7 @@
                          <button onclick = "insert('(','sci-current-operand')">(</button>  
                          <button onclick = "insert(')','sci-current-operand')">)</button>  
                          <button onclick = "scientificfun('factorial')">n!</button>  
-                         <button onclick = "scientificfun('xraisey')">x^y</button>  
+                         <button onclick = "insert('^','sci-current-operand')">x^y</button>  
                          <button onclick = "insert('/','sci-current-operand')">÷</button>  
                          <button onclick = "insert(1,'sci-current-operand')" value="1">1</button>  
                          <button onclick = "insert(2,'sci-current-operand')" value="2">2</button>  

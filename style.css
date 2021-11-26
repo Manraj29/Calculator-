@@ -152,6 +152,9 @@
 	#pro-chnge-output {
 		height: 180px;
 	}
+	#sci-chnge-output {
+		height: 170px;
+	}
 	.number-convert{
 		position: absolute;
 		right: 0;

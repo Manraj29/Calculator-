@@ -6,12 +6,16 @@ function insert(num, curop) {
 
 // Use equal() function to return the result based on passed values.  
 function equal(curop, preop, query, hist) {
-	var exp = document.getElementById(curop).innerHTML;
+	var exp = document.getElementById(curop).innerHTML;	
 	if (exp != " ") {
+		if(exp.includes("^")){
+			exp = exp.replace("^", "**");
+		}
 		document.getElementById(preop).innerHTML = document.getElementById(curop).innerHTML;
 		document.getElementById(curop).innerHTML = eval(exp);
 		addToHistory(eval(exp), preop, query, hist);
 	}
+
 }
 
 // For backspace
@@ -133,7 +137,8 @@ function showhistory() {
 var hexad = document.getElementsByName('hexad');
 var binar = document.getElementsByName('binar');
 var octa = document.getElementsByName('octa');		
-// var elems3 = document.getElementsByName('hexad');
+var opr = document.getElementsByName('opr');
+var deci = document.getElementsByName('deci');
 
 for(var i = 0; i < hexad.length; i++) {
 	hexad[i].disabled = true;
@@ -141,37 +146,281 @@ for(var i = 0; i < hexad.length; i++) {
 
 //Programmer Calc
 
-function noconvert(value) {
-	if (value == 'decimal') {
-		for(var i = 0; i < 10; i++) {
-			hexad[i].disabled = true;
-			octa[i].disabled = false;
-			binar[i].disabled = false;
-		}
-	}
-	else if (value == 'binary') {
-		for(var i = 0; i < 10; i++) {
-			hexad[i].disabled = true;
-			binar[i].disabled = true;
-			octa[i].disabled = true;
-		}
-	}
-	else if (value == 'octal') {
-		for(var i = 0; i < 10; i++) {
-			octa[i].disabled = true;
-			hexad[i].disabled = true;
-		}
-	}
-	else if (value == "hexadec") {
-		for(var i = 0; i < 20; i++) {
-			hexad[i].disabled = false;
-			octa[i].disabled = false;
-			binar[i].disabled = false;
+function noconvert(forop) {	
 
+	var x = (document.getElementById('pro-current-operand'));
+	var y = document.getElementById('pro-previous-operand');
+	alert(x.innerHTML)
+	var fromcon = document.getElementById("from-number-convert");
+	var tocon = document.getElementById("to-number-convert");
+	var from = fromcon.value;
+	var to = tocon.value;
+	// alert(to + from)
+	var con = 0;
+	if(forop == 'from-number-convert'){
+		if (from == 'decimal') {
+			for(var i = 0; i < deci.length; i++) {
+				deci[i].disabled = false;
+			}
+			for(var i = 0; i < hexad.length; i++) {
+				hexad[i].disabled = true;
+			}
+			for(var i = 0; i < octa.length; i++) {
+				octa[i].disabled = false;
+			}
+			for(var i = 0; i < binar.length; i++) {
+				binar[i].disabled = false;
+			}
 		}
+		else if (from == 'binary') {
+			for(var i = 0; i < deci.length; i++) {
+				deci[i].disabled = true;
+			}
+			for(var i = 0; i < hexad.length; i++) {
+				hexad[i].disabled = true;
+			}
+			for(var i = 0; i < octa.length; i++) {
+				octa[i].disabled = true;
+			}
+			for(var i = 0; i < binar.length; i++) {
+				binar[i].disabled = false;
+			}
+		}
+		else if (from == 'octal') {
+
+			for(var i = 0; i < deci.length; i++) {
+				deci[i].disabled = true;
+			}
+			for(var i = 0; i < hexad.length; i++) {
+				hexad[i].disabled = true;
+			}
+			for(var i = 0; i < octa.length; i++) {
+				octa[i].disabled = false;
+			}
+			for(var i = 0; i < binar.length; i++) {
+				binar[i].disabled = false;
+			}
+		}
+		else if (from == "hexadec") {
+			for(var i = 0; i < deci.length; i++) {
+				deci[i].disabled = false;
+			}
+			for(var i = 0; i < hexad.length; i++) {
+				hexad[i].disabled = false;
+			}
+			for(var i = 0; i < octa.length; i++) {
+				octa[i].disabled = false;
+			}
+			for(var i = 0; i < binar.length; i++) {
+				binar[i].disabled = false;
+			}
+		}
+	}
+	else if(forop == 'to-number-convert'){
+		if(from == "decimal" && to == "todecimal"){
+			alert("You cannot convert from decimal to decimal\n Pointless");	
+			document.getElementById('to-number-convert').selectedIndex = 0;
+			document.getElementById('from-number-convert').selectedIndex = 0;
+		}
+		else if(from == "decimal" && to == "tobinary"){
+			con = parseInt(x.innerHTML, 10).toString(2);
+			document.getElementById('pro-previous-operand').innerHTML = x.innerHTML;
+			document.getElementById('pro-current-operand').innerHTML = con;
+			document.getElementById('to-number-convert').selectedIndex = 0;
+			document.getElementById('from-number-convert').selectedIndex = 0;
+			addToHistory(con, 'pro-previous-operand', 'pro-query', 'pro-history');	
+		}
+		else if(from == "decimal" && to == "tooctal"){
+			con = parseInt(x.innerHTML, 10).toString(8);
+			document.getElementById('pro-previous-operand').innerHTML = x.innerHTML;
+			document.getElementById('pro-current-operand').innerHTML = con;
+			document.getElementById('to-number-convert').selectedIndex = 0;
+			document.getElementById('from-number-convert').selectedIndex = 0;
+			addToHistory(con, 'pro-previous-operand', 'pro-query', 'pro-history');	
+		}
+		else if(from == "decimal" && to == "tohexadec"){
+			con = parseInt(x.innerHTML, 10).toString(16);
+			document.getElementById('pro-previous-operand').innerHTML = x.innerHTML;
+			document.getElementById('pro-current-operand').innerHTML = con;
+			document.getElementById('to-number-convert').selectedIndex = 0;
+			document.getElementById('from-number-convert').selectedIndex = 0;
+			addToHistory(con, 'pro-previous-operand', 'pro-query', 'pro-history');
+		}
+		else if(from == "binary" && to == "tobinary"){
+			alert("You cannot convert from binary to binary\n Pointless");	
+			document.getElementById('to-number-convert').selectedIndex = 0;
+			document.getElementById('from-number-convert').selectedIndex = 0;
+		}
+		else if(from == "binary" && to == "todecimal"){
+			con = parseInt(x.innerHTML, 2).toString(10);
+			document.getElementById('pro-previous-operand').innerHTML = x.innerHTML;
+			document.getElementById('pro-current-operand').innerHTML = con;
+			document.getElementById('to-number-convert').selectedIndex = 0;
+			document.getElementById('from-number-convert').selectedIndex = 0;
+			addToHistory(con, 'pro-previous-operand', 'pro-query', 'pro-history');
+		}
+		else if(from == "binary" && to == "tooctal"){
+			con = parseInt(x.innerHTML, 2).toString(8);
+			document.getElementById('pro-previous-operand').innerHTML = x.innerHTML;
+			document.getElementById('pro-current-operand').innerHTML = con;
+			document.getElementById('to-number-convert').selectedIndex = 0;
+			document.getElementById('from-number-convert').selectedIndex = 0;
+			addToHistory(con, 'pro-previous-operand', 'pro-query', 'pro-history');
+		}
+		else if(from == "binary" && to == "tohexadec"){
+			con = parseInt(x.innerHTML, 2).toString(16);
+			document.getElementById('pro-previous-operand').innerHTML = x.innerHTML;
+			document.getElementById('pro-current-operand').innerHTML = con;
+			document.getElementById('to-number-convert').selectedIndex = 0;
+			document.getElementById('from-number-convert').selectedIndex = 0;
+			addToHistory(con, 'pro-previous-operand', 'pro-query', 'pro-history');
+		}
+		else if(from == "octal" && to == "tooctal"){
+			alert("You cannot convert from octal to octal<br> Pointless");	
+			document.getElementById('to-number-convert').selectedIndex = 0;
+			document.getElementById('from-number-convert').selectedIndex = 0;
+		}
+		else if(from == "octal" && to == "todecimal"){
+			con = parseInt(x.innerHTML, 8).toString(10);
+			document.getElementById('pro-previous-operand').innerHTML = x.innerHTML;
+			document.getElementById('pro-current-operand').innerHTML = con;
+			document.getElementById('to-number-convert').selectedIndex = 0;
+			document.getElementById('from-number-convert').selectedIndex = 0;
+			addToHistory(con, 'pro-previous-operand', 'pro-query', 'pro-history');
+		}
+		else if(from == "octal" && to == "tobinary"){
+			con = parseInt(x.innerHTML, 8).toString(2);
+			document.getElementById('pro-previous-operand').innerHTML = x.innerHTML;
+			document.getElementById('pro-current-operand').innerHTML = con;
+			document.getElementById('to-number-convert').selectedIndex = 0;
+			document.getElementById('from-number-convert').selectedIndex = 0;
+			addToHistory(con, 'pro-previous-operand', 'pro-query', 'pro-history');
+		}
+		else if(from == "octal" && to == "tohexadec"){
+			con = parseInt(x.innerHTML, 8).toString(16);
+			document.getElementById('pro-previous-operand').innerHTML = x.innerHTML;
+			document.getElementById('pro-current-operand').innerHTML = con;
+			document.getElementById('to-number-convert').selectedIndex = 0;
+			document.getElementById('from-number-convert').selectedIndex = 0;
+			addToHistory(con, 'pro-previous-operand', 'pro-query', 'pro-history');
+		}
+		else if(from == "hexadec" && to == "tohexadec"){
+			alert("You cannot convert from hexadecimal to hexadecimal<br> Pointless");	
+			document.getElementById('to-number-convert').selectedIndex = 0;
+			document.getElementById('from-number-convert').selectedIndex = 0;
+		}
+		else if(from == "hexadec" && to == "todecimal"){
+			con = parseInt(x.innerHTML, 16).toString(10);
+			document.getElementById('pro-previous-operand').innerHTML = x.innerHTML;
+			document.getElementById('pro-current-operand').innerHTML = con;
+			document.getElementById('to-number-convert').selectedIndex = 0;
+			document.getElementById('from-number-convert').selectedIndex = 0;
+			addToHistory(con, 'pro-previous-operand', 'pro-query', 'pro-history');
+		}
+		else if(from == "hexadec" && to == "tobinary"){
+			con = parseInt(x.innerHTML, 16).toString(2);
+			document.getElementById('pro-previous-operand').innerHTML = x.innerHTML;
+			document.getElementById('pro-current-operand').innerHTML = con;
+			document.getElementById('to-number-convert').selectedIndex = 0;
+			document.getElementById('from-number-convert').selectedIndex = 0;
+			addToHistory(con, 'pro-previous-operand', 'pro-query', 'pro-history');
+		}
+		else if(from == "hexadec" && to == "tooctal"){
+			con = parseInt(x.innerHTML, 16).toString(8);
+			document.getElementById('pro-previous-operand').innerHTML = x.innerHTML;
+			document.getElementById('pro-current-operand').innerHTML = con;
+			document.getElementById('to-number-convert').selectedIndex = 0;
+			document.getElementById('from-number-convert').selectedIndex = 0;
+			addToHistory(con, 'pro-previous-operand', 'pro-query', 'pro-history');
+		}
+
 	}
 }
 
+function trigofunctions(value) {
+	var x = document.getElementById('sci-current-operand');
+	var y = document.getElementById('sci-previous-operand');
+	var ansop;
+	if(value == 'sin') {
+		ansop = Math.sin(x.innerHTML);
+		y.innerHTML = "sin (" + x.innerHTML + " )";
+		x.innerHTML = ansop;
+		addToHistory(ansop, 'sci-previous-operand', 'sci-query', 'sci-history');
+	}
+	else if(value == 'cos') {
+		ansop = Math.cos(x.innerHTML);
+		y.innerHTML = "cos (" + x.innerHTML + " )";
+		x.innerHTML = ansop;
+		addToHistory(ansop, 'sci-previous-operand', 'sci-query', 'sci-history');
+	}
+	else if(value == 'tan') {
+		ansop = Math.tan(x.innerHTML);
+		y.innerHTML = "tan (" + x.innerHTML + " )";
+		x.innerHTML = ansop;
+		addToHistory(ansop, 'sci-previous-operand', 'sci-query', 'sci-history');
+
+	}
+	else if(value == 'sec') {
+		ansop = 1/Math.cos(x.innerHTML);
+		y.innerHTML = "sec (" + x.innerHTML + " )";
+		x.innerHTML = ansop;
+		addToHistory(ansop, 'sci-previous-operand', 'sci-query', 'sci-history');
+
+	}
+	else if(value == 'cosec') {
+		ansop = 1/Math.sin(x.innerHTML);
+		y.innerHTML = "cosec (" + x.innerHTML + " )";
+		x.innerHTML = ansop;
+		addToHistory(ansop, 'sci-previous-operand', 'sci-query', 'sci-history');
+
+	}
+	else if(value == 'cot') {
+		ansop = 1/Math.tan(x.innerHTML);
+		y.innerHTML = "cot (" + x.innerHTML + " )";
+		x.innerHTML = ansop;
+		addToHistory(ansop, 'sci-previous-operand', 'sci-query', 'sci-history');
+
+	}
+	else{
+		alert("Error");
+	}
+} 
+
+
+function basicfunctions(value) {
+	var x = document.getElementById('sci-current-operand');
+	var y = document.getElementById('sci-previous-operand');
+	var ansop;
+	if(value == 'floor') {
+		ansop = Math.floor(x.innerHTML);
+		y.innerHTML = "floor (" + x.innerHTML + " )";
+		x.innerHTML = ansop;
+		addToHistory(ansop, 'sci-previous-operand', 'sci-query', 'sci-history');
+	}
+	else if(value == 'ceil') {
+		ansop = Math.ceil(x.innerHTML);
+		y.innerHTML = "ceil (" + x.innerHTML + " )";
+		x.innerHTML = ansop;
+		addToHistory(ansop, 'sci-previous-operand', 'sci-query', 'sci-history');
+	}
+	else if(value == 'round') {
+		ansop = Math.round(x.innerHTML);
+		y.innerHTML = "round (" + x.innerHTML + " )";
+		x.innerHTML = ansop;
+		addToHistory(ansop, 'sci-previous-operand', 'sci-query', 'sci-history');
+	}
+	else if(value == 'degree') {
+		ansop = x.innerHTML * Math.PI / 180;
+		y.innerHTML = "degree (" + x.innerHTML + " )";
+		x.innerHTML = ansop;
+		addToHistory(ansop, 'sci-previous-operand', 'sci-query', 'sci-history');
+	}
+	else if(value == 'rand') {
+		ansop = Math.random();
+		x.innerHTML = ansop;
+		// addToHistory(ansop, 'sci-previous-operand', 'sci-query', 'sci-history');
+	}
+}
 
 
 
