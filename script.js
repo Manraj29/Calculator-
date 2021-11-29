@@ -104,7 +104,8 @@ function clearhistory(query, hist) {
 }
 
 
-//Show History mobile view with cookies
+//Show History mobile view with localStorage
+
 function showhistory() {
 	if (localStorage.getItem('currentCalculator') == 'standard') {
 		if (document.getElementById('operation-history').style.display == "block") {
@@ -150,7 +151,7 @@ function noconvert(forop) {
 
 	var x = (document.getElementById('pro-current-operand'));
 	var y = document.getElementById('pro-previous-operand');
-// 	alert(x.innerHTML)
+	// alert(x.innerHTML)
 	var fromcon = document.getElementById("from-number-convert");
 	var tocon = document.getElementById("to-number-convert");
 	var from = fromcon.value;

@@ -1,6 +1,6 @@
 	.dark-mode {
-	background: linear-gradient(to right, #1e1e1e, #111927);
-	color: #e2e2e2;
+	background: linear-gradient(to right, #1e1e1e, #223149, #1e1e1e);
+	color: #e9ebee;
 	}
 	.dark-output {
 	background: linear-gradient(to right, #a5c7b7, #daebe2) !important;
@@ -18,28 +18,30 @@
 	body {
 	padding: 0;
 	margin: 0;
-	background: linear-gradient(to right, #a3bded, #6991c7);
+	background: linear-gradient(to right, #a3bded, #6587cc, #4d6cb7, #3b5998, #2d4373);
+	}
 	}
 
 	/* SCROLLBAR */
 	/* Scrollbar Styling */
 	::-webkit-scrollbar {
-	width: 10px;
-	}
-
-	::-webkit-scrollbar-track {
-	background-color: #ebebeb;
-	-webkit-border-radius: 10px;
-	border-radius: 10px;
-	}
-	
-
-	::-webkit-scrollbar-thumb {
-	-webkit-border-radius: 10px;
-	border-radius: 10px;
-	background: #6d6d6d;
-	}
-
+		width: 10px;
+	  }
+	  
+	  /* Track */
+	  ::-webkit-scrollbar-track {
+		background: #f1f1f1; 
+	  }
+	   
+	  /* Handle */
+	  ::-webkit-scrollbar-thumb {
+		background: #888; 
+	  }
+	  
+	  /* Handle on hover */
+	  ::-webkit-scrollbar-thumb:hover {
+		background: #555; 
+	  }
 	.calculator-grid {
 	display: grid;
 	justify-content: center;
@@ -183,7 +185,7 @@
 	left: 0;
 	right: 0;
 	bottom: 0;
-	background-color: #e2e2e2;
+	background-color: #e9ebee;
 	-webkit-transition: 0.4s;
 	transition: 1s;
 	}
@@ -201,11 +203,11 @@
 	}
 
 	input:checked + .slider {
-	background-color: #e2e2e2;
+	background-color: #e9ebee;
 	}
 
 	input:focus + .slider {
-	box-shadow: 0 0 1px #e2e2e2;
+	box-shadow: 0 0 1px #e9ebee;
 	}
 
 	input:checked + .slider:before {
@@ -230,7 +232,7 @@
 	z-index: 1;
 	top: 0;
 	left: 0;
-	background-color: #2c2c2c;
+	background: linear-gradient(to bottom, #2e3b40, #2e3b40, #2e3b40 , #54646c) !important;
 	overflow-x: hidden;
 	transition: 0.5s;
 	padding-top: 60px;
@@ -247,10 +249,10 @@
 	}
 
 	.sidenav a:hover {
-	color: #111927;
+	color: #151b25;
 	cursor: pointer;
 	text-decoration: none;
-	background-color: #f3e3e3;
+	background-color: #f0eeee;
 	filter: contrast(100%);
 	/* border: 1px solid #2196F3; */
 	}
@@ -307,7 +309,7 @@
 	transition: 2s;
 	margin-top: -450px;
 	position: static;
-	background-color: #a3bded;
+	background: linear-gradient(to right, #6587cc, #4d6cb7,  #6587cc);
 	-webkit-animation: expand 1s;
 	}
 	@-webkit-keyframes expand {
@@ -592,7 +594,7 @@
 		min-height: 0vh;
 		margin: auto 50px auto;
 		grid-template-columns: repeat(5, 165px);
-		grid-template-rows: minmax(120px, auto) repeat(7, 60px);
+		grid-template-rows: minmax(120px, auto) repeat(7, 55px);
 	}
 	.pro-calculator-grid {
 		display: grid;
